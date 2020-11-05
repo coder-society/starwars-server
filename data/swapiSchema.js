@@ -6,19 +6,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLInterfaceType,
-  GraphQLEnumType,
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLString
-} from 'graphql';
-
 import { makeExecutableSchema } from 'graphql-tools';
 
-import { PubSub, SubscriptionManager, withFilter } from 'graphql-subscriptions';
+import { PubSub, withFilter } from 'graphql-subscriptions';
 
 const pubsub = new PubSub();
 const ADDED_REVIEW_TOPIC = 'new_review';
@@ -347,13 +337,6 @@ var reviews = {
 function getCharacter(id) {
   // Returning a promise just to illustrate GraphQL.js's support.
   return Promise.resolve(humanData[id] || droidData[id]);
-}
-
-/**
- * Allows us to query for a character's friends.
- */
-function getFriends(character) {
-  return character.friends.map(id => getCharacter(id));
 }
 
 /**
