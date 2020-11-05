@@ -37,6 +37,7 @@ type Query {
   search(text: String): [SearchResult]
   character(id: ID!): Character
   droid(id: ID!): Droid
+  humans: [Human]
   human(id: ID!): Human
   starship(id: ID!): Starship
 }
@@ -375,6 +376,13 @@ function getReviews(episode) {
 }
 
 /**
+ * Allows us to query for the humans.
+ */
+function getHumans() {
+  return Object.values(humanData);
+}
+
+/**
  * Allows us to query for the human with the given id.
  */
 function getHuman(id) {
@@ -404,6 +412,7 @@ const resolvers = {
   Query: {
     hero: (root, { episode }) => getHero(episode),
     character: (root, { id }) => getCharacter(id),
+    humans: () => getHumans(),
     human: (root, { id }) => getHuman(id),
     droid: (root, { id }) => getDroid(id),
     starship: (root, { id }) => getStarship(id),
