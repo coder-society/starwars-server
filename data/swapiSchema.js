@@ -443,7 +443,7 @@ const resolvers = {
             () => pubsub.asyncIterator(ADDED_REVIEW_TOPIC),
             (payload, variables) => {
                 return (payload !== undefined) && 
-                ((variables.episode === null) || (payload.reviewAdded.episode === variables.episode));
+                ((variables.episode == null) || (payload.reviewAdded.episode === variables.episode));
             }
         ),
     },
